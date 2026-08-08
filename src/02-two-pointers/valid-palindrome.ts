@@ -2,19 +2,36 @@
  * https://leetcode.com/problems/valid-palindrome/
  */
 export function isPalindrome(_s: string): boolean {
-  const a = [..._s]
-    .map((sn) => sn.trim())
-    .filter((sn) => sn.length > 0)
-    .map((sn) => sn.toLowerCase())
-    .filter((sn) => {
-      if (!sn) return null;
+  const length = _s.length;
+  let l = 0;
+  let r = length - 1;
 
-      const ch = sn.charCodeAt(0);
+  const isValidSymbol = (s: number) =>
+    (s >= 97 && s <= 122) || (s >= 48 && s <= 57);
 
-      return (ch >= 97 && ch <= 122) || (ch >= 48 && ch <= 57);
-    });
+  while (l < r) {
+    const lsl = _s[l].toLowerCase();
+    const lsr = _s[r].toLowerCase();
 
-  return JSON.stringify(a) === JSON.stringify(a.toReversed());
+    if (!isValidSymbol(lsl.charCodeAt(0))) {
+      l++;
+      continue;
+    }
+
+    if (!isValidSymbol(lsr.charCodeAt(0))) {
+      r--;
+      continue;
+    }
+
+    if (lsl === lsr) {
+      l++;
+      r--;
+    } else {
+      return false;
+    }
+  }
+
+  return true;
 
   throw new Error("not implemented");
 }
