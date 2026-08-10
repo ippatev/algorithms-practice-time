@@ -7,12 +7,8 @@ export function maxArea(_height: number[]): number {
   let r = len - 1;
   let max = 0;
 
-  const sum = (l: number, r: number) => {
-    return Math.min(_height[l], _height[r]) * (r - l);
-  };
-
   while (l < r) {
-    max = Math.max(max, sum(l, r));
+    max = Math.max(max, Math.min(_height[l], _height[r]) * (r - l));
 
     if (_height[l] < _height[r]) {
       l++;
