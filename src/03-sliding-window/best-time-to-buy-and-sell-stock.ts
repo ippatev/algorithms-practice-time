@@ -6,8 +6,8 @@ export function maxProfit(_prices: number[]): number {
   let maxP = 0;
 
   for (let i = 1; i < _prices.length; i++) {
-    minP = _prices[i] < minP ? _prices[i] : minP;
-    maxP = _prices[i] - minP > maxP ? _prices[i] - minP : maxP;
+    minP = Math.min(_prices[i], minP);
+    maxP = Math.max(_prices[i] - minP, maxP);
   }
 
   return maxP;
