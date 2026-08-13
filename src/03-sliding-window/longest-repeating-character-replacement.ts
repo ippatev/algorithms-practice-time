@@ -2,7 +2,7 @@
  * https://leetcode.com/problems/longest-repeating-character-replacement/
  */
 export function characterReplacement(_s: string, _k: number): number {
-  let freq = new Map<string, number>();
+  const freq = new Map<string, number>();
   let maxFreq = 0;
   let left = 0;
   let res = 0;
