@@ -11,8 +11,24 @@ export function evalRPN(_tokens: string[]): number {
     if (mSymbols.has(curr)) {
       const a = stack.pop();
       const b = stack.pop();
+      let c = 0;
 
-      stack.push(Math.trunc(+eval(`${b}${curr}${a}`)));
+      switch (curr) {
+        case "+":
+          c = Math.trunc(b! + a!);
+          break;
+        case "-":
+          c = Math.trunc(b! - a!);
+          break;
+        case "*":
+          c = Math.trunc(b! * a!);
+          break;
+        case "/":
+          c = Math.trunc(b! / a!);
+          break;
+      }
+
+      stack.push(c);
 
       continue;
     }
